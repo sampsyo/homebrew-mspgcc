@@ -12,6 +12,7 @@ class Mspgcc_lts1 < Formula
     :using => :nounzip
   sha1 '9de4e74d8ceb2005409e03bf671e619f2e060082'
 end
+
 class Mspgcc_lts2 < Formula
   homepage 'http://mspgcc.sourceforge.net'
   url 'http://sourceforge.net/projects/mspgcc/files/Patches/LTS/20120406/msp430-gcc-4.6.3-20120406-sf3559978.patch',
@@ -23,7 +24,7 @@ class Msp430Gcc < Formula
   url 'http://ftpmirror.gnu.org/gcc/gcc-4.6.3/gcc-core-4.6.3.tar.bz2'
   sha1 'eaefb90df5a833c94560a8dda177bd1e165c2a88'
 
-  depends_on 'msp430-binutils'
+  # depends_on 'msp430-binutils'
 
   def patches
     # Main patch.
@@ -47,6 +48,8 @@ class Msp430Gcc < Formula
   end
 
   def install
+    # Configure seems to fail if we run it in the source directory, so we
+    # instead build in a subdirectory.
     Dir.mkdir 'build'
     Dir.chdir 'build' do
       system "../configure", "--target=msp430", "--enable-languages=c", "--program-prefix='msp430-'", "--prefix=#{prefix}"
