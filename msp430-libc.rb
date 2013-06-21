@@ -6,6 +6,7 @@ class Msp430Libc < Formula
   sha1 'd01cf0db41bff1a0ab50644cbb11bc5a1d5be172'
 
   # depends_on 'msp430-gcc'
+  # depends_on 'msp430-mcu'
 
   def install
     Dir.chdir 'src' do
