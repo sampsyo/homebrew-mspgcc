@@ -23,8 +23,12 @@ class Msp430Gcc < Formula
   homepage 'http://mspgcc.sourceforge.net'
   url 'http://ftpmirror.gnu.org/gcc/gcc-4.6.3/gcc-core-4.6.3.tar.bz2'
   sha1 'eaefb90df5a833c94560a8dda177bd1e165c2a88'
+  env :std
 
   # depends_on 'msp430-binutils'
+  depends_on 'mpfr'
+  depends_on 'gmp'
+  depends_on 'isl'
 
   def patches
     # Main patch.
@@ -48,13 +52,28 @@ class Msp430Gcc < Formula
   end
 
   def install
-    # Configure seems to fail if we run it in the source directory, so we
-    # instead build in a subdirectory.
-    Dir.mkdir 'build'
-    Dir.chdir 'build' do
+    # The bootstrap process uses "xgcc", which doesn't have these flags. This
+    # results in an error like the following:
+    # configure: error: cannot compute suffix of object files: cannot compile
+    # which, upon further inspection, arises when xgcc bails out when it sees
+    # this argument.
+    ENV.remove_from_cflags '-Qunused-arguments'
+    ENV.remove_from_cflags '-march=native'
+    ENV.remove_from_cflags(/ ?-mmacosx-version-min=10\.\d/)
+
+    # gcc must be built outside of the source directory.
+    mkdir 'build' do
       system "../configure", "--target=msp430", "--enable-languages=c", "--program-prefix='msp430-'", "--prefix=#{prefix}"
       system "make"
       system "make install"
+
+      # Remove libiberty, which conflicts with the same library provided by
+      # binutils.
+      # http://msp430-gcc-users.1086195.n5.nabble.com/overwriting-libiberty-td4215.html
+      # Fix inspired by:
+      # https://github.com/larsimmisch/homebrew-avr/commit/8cc2a2e591b3a4bef09bd6efe2d7de95dfd92794
+      multios = `gcc --print-multi-os-dir`.chomp
+      File.unlink "#{prefix}/lib/#{multios}/libiberty.a"
     end
   end
 end
