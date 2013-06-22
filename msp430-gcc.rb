@@ -63,7 +63,8 @@ class Msp430Gcc < Formula
 
     # gcc must be built outside of the source directory.
     mkdir 'build' do
-      system "../configure", "--target=msp430", "--enable-languages=c", "--program-prefix='msp430-'", "--prefix=#{prefix}"
+      binutils = Formula.factory('msp430-binutils')
+      system "../configure", "--target=msp430", "--enable-languages=c", "--program-prefix='msp430-'", "--prefix=#{prefix}", "--with-as=#{binutils.opt_prefix}/msp430/bin/as", "--with-ld=#{binutils.opt_prefix}/msp430/bin/ld"
       system "make"
       system "make install"
 
