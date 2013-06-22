@@ -25,7 +25,7 @@ class Msp430Gcc < Formula
   sha1 'eaefb90df5a833c94560a8dda177bd1e165c2a88'
   env :std
 
-  # depends_on 'msp430-binutils'
+  depends_on 'msp430-binutils'
   depends_on 'mpfr'
   depends_on 'gmp'
   depends_on 'isl'
