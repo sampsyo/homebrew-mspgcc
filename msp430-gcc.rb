@@ -29,6 +29,7 @@ class Msp430Gcc < Formula
   depends_on 'mpfr'
   depends_on 'gmp'
   depends_on 'isl'
+  depends_on 'libmpc'
 
   def patches
     # Main patch.

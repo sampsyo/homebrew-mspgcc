@@ -9,6 +9,7 @@ for component in binutils libc mcu ; do
     srcdir=$prefix/opt/msp430-$component/msp430
     for fn in `find $srcdir` ; do
         if [ ! -d $fn ] ; then
+            echo $fn
             relpath=`echo $fn | sed s:""$srcdir/""::`
             mkdir -p `dirname $relpath`
             ln -s $fn $relpath
