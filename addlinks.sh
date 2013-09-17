@@ -2,7 +2,9 @@
 
 prefix=`brew --prefix`
 
-cd $prefix/opt/msp430-gcc/msp430
+destdir=$prefix/opt/msp430-gcc/msp430
+mkdir -p $destdir
+cd $destdir
 
 # Link the files from each of the other installed formula (besides gcc itself).
 for component in binutils libc mcu ; do
