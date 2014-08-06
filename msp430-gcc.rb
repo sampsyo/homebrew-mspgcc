@@ -46,9 +46,9 @@ class Msp430Gcc < Formula
     end
 
     [
-      "msp430-gcc-4.6.3-20120406.patch",
-      "msp430-gcc-4.6.3-20120406-sf3540953.patch",
-      "msp430-gcc-4.6.3-20120406-sf3559978.patch"
+      "http://sourceforge.net/projects/mspgcc/files/Patches/gcc-4.6.3/msp430-gcc-4.6.3-20120406.patch",
+      "http://sourceforge.net/projects/mspgcc/files/Patches/LTS/20120406/msp430-gcc-4.6.3-20120406-sf3540953.patch",
+      "http://sourceforge.net/projects/mspgcc/files/Patches/LTS/20120406/msp430-gcc-4.6.3-20120406-sf3559978.patch"
     ]
   end
 
