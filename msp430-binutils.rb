@@ -2,25 +2,24 @@ require 'formula'
 
 class Mspgcc < Formula
   homepage 'http://mspgcc.sourceforge.net'
-  url 'http://sourceforge.net/projects/mspgcc/files/mspgcc/mspgcc-20120406.tar.bz2'
-  sha1 'cc96a7233f0b1d2c106eff7db6fc00e4ed9039a8'
+  url 'http://downloads.sourceforge.net/project/mspgcc/mspgcc/DEVEL-4.7.x/mspgcc-20120911.tar.bz2'
+  sha1 '04f5860857dbb166d997737312494018b125f4bd'
 end
 
 class Msp430Binutils < Formula
   homepage 'http://mspgcc.sourceforge.net'
-  url 'http://ftpmirror.gnu.org/binutils/binutils-2.21.1a.tar.bz2'
-  sha1 '525255ca6874b872540c9967a1d26acfbc7c8230'
+  url 'http://ftp.gnu.org/gnu/binutils/binutils-2.22.tar.gz'
+  sha1 '0e16a7492c0a194962ecd33fc80fa53ccfec5149'
 
-  def patches
-    Mspgcc.new.brew do
-      buildpath.install "msp430-binutils-2.21.1a-20120406.patch"
-    end
-    "http://sourceforge.net/projects/mspgcc/files/Patches/binutils-2.21.1a/msp430-binutils-2.21.1a-20120406.patch"
+  patch do
+    url "http://sourceforge.net/projects/mspgcc/files/Patches/binutils-2.22/msp430-binutils-2.22-20120911.patch/download"
   end
 
   def install
-    system "./configure", "--target=msp430", "--program-prefix='msp430-'", "--prefix=#{prefix}"
-    system "make"
-    system "make install"
+    mkdir 'build' do
+        system "../configure", "--target=msp430", "--program-prefix='msp430-'", "--prefix=#{prefix}"
+        system "make"
+        system "make install"
+    end
   end
 end
