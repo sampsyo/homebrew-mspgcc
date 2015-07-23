@@ -8,7 +8,7 @@ end
 
 class Msp430Gcc < Formula
   homepage 'http://mspgcc.sourceforge.net'
-  url 'http://gcc.petsads.us/releases/gcc-4.7.0/gcc-4.7.0.tar.bz2'
+  url 'http://www.netgull.com/gcc/releases/gcc-4.7.0/gcc-4.7.0.tar.bz2'
   sha1 '03b8241477a9f8a34f6efe7273d92b9b6dd9fe82'
   env :std
 
