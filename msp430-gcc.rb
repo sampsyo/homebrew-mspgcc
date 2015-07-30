@@ -30,7 +30,8 @@ class Msp430Gcc < Formula
     # which, upon further inspection, arises when xgcc bails out when it sees
     # this argument.
     ENV.remove_from_cflags '-Qunused-arguments'
-    ENV.remove_from_cflags '-march=native'
+    ENV.remove_from_cflags(/ ?-march=\S*/)
+    ENV.remove_from_cflags(/ ?-msse4(\.\d)?/)
     ENV.remove_from_cflags(/ ?-mmacosx-version-min=10\.\d+/)
 
     # gcc must be built outside of the source directory.
@@ -46,7 +47,11 @@ class Msp430Gcc < Formula
       # http://msp430-gcc-users.1086195.n5.nabble.com/overwriting-libiberty-td4215.html
       # Fix inspired by:
       # https://github.com/larsimmisch/homebrew-avr/commit/8cc2a2e591b3a4bef09bd6efe2d7de95dfd92794
-      File.unlink "#{prefix}/lib/x86_64/libiberty.a"
+      if File.exists?("#{prefix}/lib/x86_64/libiberty.a")
+        File.unlink "#{prefix}/lib/x86_64/libiberty.a"
+      else
+        File.unlink "#{prefix}/lib/libiberty.a"
+      end
     end
   end
 end
