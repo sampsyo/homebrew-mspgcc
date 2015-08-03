@@ -30,7 +30,8 @@ class Msp430Gcc < Formula
     # which, upon further inspection, arises when xgcc bails out when it sees
     # this argument.
     ENV.remove_from_cflags '-Qunused-arguments'
-    ENV.remove_from_cflags '-march=native'
+    ENV.remove_from_cflags(/ ?-march=\S*/)
+    ENV.remove_from_cflags(/ ?-msse4(\.\d)?/)
     ENV.remove_from_cflags(/ ?-mmacosx-version-min=10\.\d+/)
 
     # gcc must be built outside of the source directory.
