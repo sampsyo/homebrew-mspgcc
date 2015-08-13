@@ -48,7 +48,10 @@ class Msp430Gcc < Formula
       # Fix inspired by:
       # https://github.com/larsimmisch/homebrew-avr/commit/8cc2a2e591b3a4bef09bd6efe2d7de95dfd92794
       multios = `gcc --print-multi-os-directory`.chomp
-      File.unlink "#{prefix}/lib/#{multios}/libiberty.a"
+      libiberty = "#{prefix}/lib/#{multios}/libiberty.a"
+      if File.exists?(libiberty)
+        File.unlink libiberty
+      end
     end
   end
 end
