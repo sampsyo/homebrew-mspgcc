@@ -3,7 +3,7 @@ require 'formula'
 class Msp430Libc < Formula
   homepage 'http://mspgcc.sourceforge.net'
   url 'https://sourceforge.net/projects/mspgcc/files/msp430-libc/msp430-libc-20120716.tar.bz2'
-  sha1 '2ab5be8e645a5e96f64de9dd45ce96d129180ed1'
+  sha256 "cbd78f468e9e3b2df9060f78e8edb1b7bfeb98a9abfa5410d23f63a5dc161c7d"
 
   depends_on 'msp430-gcc'
   depends_on 'msp430-mcu'

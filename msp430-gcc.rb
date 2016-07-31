@@ -1,15 +1,9 @@
 require 'formula'
 
-class Mspgcc < Formula
-  homepage 'http://mspgcc.sourceforge.net'
-  url ' http://downloads.sourceforge.net/project/mspgcc/mspgcc/DEVEL-4.7.x/mspgcc-20120911.tar.bz2'
-  sha1 '04f5860857dbb166d997737312494018b125f4bd'
-end
-
 class Msp430Gcc < Formula
   homepage 'http://mspgcc.sourceforge.net'
   url 'http://www.netgull.com/gcc/releases/gcc-4.7.0/gcc-4.7.0.tar.bz2'
-  sha1 '03b8241477a9f8a34f6efe7273d92b9b6dd9fe82'
+  sha256 "a680083e016f656dab7acd45b9729912e70e71bbffcbf0e3e8aa1cccf19dc9a5"
   env :std
 
   depends_on 'msp430-binutils'
@@ -20,7 +14,7 @@ class Msp430Gcc < Formula
 
   patch do
     url "http://sourceforge.net/projects/mspgcc/files/Patches/gcc-4.7.0/msp430-gcc-4.7.0-20120911.patch/download"
-    sha1 "3e70230f6052ed30d1a288724f2b97ab47581489"
+    sha256 "db0b6e502c89be4cfee518e772125eaea66cc289d9428c57ddcc187a3be9e77a"
   end
 
   def install
