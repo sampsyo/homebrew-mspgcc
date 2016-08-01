@@ -1,19 +1,14 @@
 require 'formula'
 
-class Mspgcc < Formula
-  homepage 'http://mspgcc.sourceforge.net'
-  url 'http://downloads.sourceforge.net/project/mspgcc/mspgcc/DEVEL-4.7.x/mspgcc-20120911.tar.bz2'
-  sha1 '04f5860857dbb166d997737312494018b125f4bd'
-end
-
 class Msp430Gdb < Formula
   homepage 'http://mspgcc.sourceforge.net'
   url 'http://ftpmirror.gnu.org/gdb/gdb-7.2a.tar.bz2'
-  sha1 '14daf8ccf1307f148f80c8db17f8e43f545c2691'
+  sha256 "3c24dde332e33bfe2d5980c726d76224ebf8304278112a07bf701f8d2145d9bc"
   env :std
 
   patch do
     url "http://sourceforge.net/projects/mspgcc/files/Patches/gdb-7.2a/msp430-gdb-7.2a-20111205.patch/download"
+    sha256 "b70b54df5e00d24a3a5b744545a87ce656bdc88546081c6ffabefbc4d6c42956"
   end
 
   def install
