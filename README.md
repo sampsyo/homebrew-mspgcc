@@ -18,7 +18,7 @@ These formulae are quick n' dirty and undoubtedly need some improvement (missing
 
 One manual step is required to get a working system. Annoyingly, since the `--prefix=` compile option for each of these packages is different, each of the various tools can't find required files installed by other packages. To consolidate the various `lib` pieces under a common directory, run:
 
-    $ $(brew --prefix)/Library/Taps/sampsyo/homebrew-mspgcc/addlinks.sh
+    $ $(brew --prefix)/Homebrew/Library/Taps/sampsyo/homebrew-mspgcc/addlinks.sh
 
 This script symlinks everything from all the packages into `msp430` under the msp430-gcc keg. This means your root for the MSP430 toolchain is something like `/usr/local/opt/msp430-gcc/msp430` (which would be `/usr/local/msp430` on a "normal" installation).
 
